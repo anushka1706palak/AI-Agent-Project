@@ -1,0 +1,45 @@
+import json
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.linear_model import LogisticRegression
+
+# Load intents
+with open("intents.json", "r") as f:
+    intents = json.load(f)
+
+# Prepare training data
+X = []
+y = []
+
+for intent, data in intents.items():
+    for pattern in data["patterns"]:
+        X.append(pattern)
+        y.append(intent)
+
+# Vectorization
+vectorizer = TfidfVectorizer()
+X_vectorized = vectorizer.fit_transform(X)
+
+# Train model
+model = LogisticRegression()
+model.fit(X_vectorized, y)
+
+# AI Agent Brain
+def ai_agent(user_input):
+    input_vector = vectorizer.transform([user_input])
+    intent = model.predict(input_vector)[0]
+    return intents[intent]["response"], intent
+
+# Interaction Loop
+print("🤖 AI Business Assistant Started")
+print("Type 'exit' to stop\n")
+
+while True:
+    user_input = input("You: ").lower()
+    
+    if user_input in ["exit", "quit"]:
+        print("Agent: Goodbye 👋")
+        break
+
+    response, intent = ai_agent(user_input)
+    print("Agent:", response)

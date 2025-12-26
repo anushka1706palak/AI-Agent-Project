@@ -1,0 +1,22 @@
+{
+  "greeting": {
+    "patterns": ["hello", "hi", "hey", "good morning"],
+    "response": "Hello! How can I help you today?"
+  },
+  "hours": {
+    "patterns": ["working hours", "office time", "open time"],
+    "response": "We are open from 9 AM to 6 PM, Monday to Friday."
+  },
+  "pricing": {
+    "patterns": ["price", "cost", "fees"],
+    "response": "Our pricing starts from ₹999 per month."
+  },
+  "support": {
+    "patterns": ["problem", "issue", "help"],
+    "response": "Please describe your issue. Our support team will assist you."
+  },
+  "goodbye": {
+    "patterns": ["bye", "exit", "quit"],
+    "response": "Thank you for visiting! Have a great day."
+  }
+}
